@@ -1,28 +1,14 @@
 function checkDate(timestamp) {
-    var day = new Date(timestamp * 1000).getDate();
-    var month = new Date(timestamp * 1000).getMonth();
-    var year = new Date(timestamp * 1000).getFullYear();
-    var hour = new Date(timestamp * 1000).getHours();
-
+    const timestamp_Date = new Date(timestamp);
     const current_Date = new Date(Date.now());
-    const current_day = current_Date.getDate();
-    const current_month = current_Date.getMonth() + 1;
-    const currentYear = current_Date.getFullYear();
+    //убрал лишние экземпляры класса
 
-    let isSameDate = false;
+    let isSameDate = timestamp_Date.getTime() === current_Date.getTime();
+    //создал проверку на точное совпадение 2 дат
 
-    if (year == currentYear) {
-        if (month == current_month) {
-            if (day == current_day) {
-                isSameDate = true;
-            } else {
-                isSameDate = false;
-            }
-        }
-    }
-
+    const hour = timestamp_Date.getHours();
     return {
         isSameDate: isSameDate,
-        dayPeriod: hour > 11 ? 'pm' : 'am'
-    }
+        dayPeriod: hour > 11 ? 'pm' : 'am',
+    };
 }
